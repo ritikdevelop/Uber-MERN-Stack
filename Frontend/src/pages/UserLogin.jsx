@@ -31,8 +31,8 @@ const UserLogin = () => {
             Login
           </button>
 
-          <p className="text-center mb-1">
-            New here? <Link className="text-blue-600">Create new Account</Link>
+          <p className="text-center mb-1 font-normal">
+            Don't have an account? <Link to={"/sign-up"} className="text-blue-600 font-medium">Create new Account</Link>
           </p>
         </form>
       </div>
