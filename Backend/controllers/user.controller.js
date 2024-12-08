@@ -9,6 +9,7 @@ const { validationResult } = require("express-validator");
 //  * @param {Object} res - The response object
 //  * @param {Function} next - The next middleware function
  */
+
 module.exports.registerUser = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
