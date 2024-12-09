@@ -10,6 +10,7 @@ const Home = () => {
           className="w-16 ml-8"
           src="/images/uber-logo.png"
           alt="Uber icon"
+          loading="lazy"
         />
         <div className="bg-white pb-6 py-4 px-4">
           <h2 className="text-3xl font-bold">Get started with Uber</h2>
