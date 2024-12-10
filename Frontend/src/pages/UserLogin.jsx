@@ -9,9 +9,6 @@ const UserLogin = () => {
           className="w-16 mb-8"
           src="/images/uber-logo.png"
           alt="Uber icon"
-          onClick={()=>{
-            <Link to={"/"} />
-          }}
           loading="lazy"
         />
         <form>
