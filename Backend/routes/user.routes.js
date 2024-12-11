@@ -24,7 +24,7 @@ router.post(
     body("email").isEmail().withMessage("Invalid Email"),
     body("password")
       .isLength({ min: 6 })
-      .withMessage("Password length should be or equal to 6 letters"),
+      .withMessage("Password length should be more than 6 characters"),
   ],
   userController.loginUser
 );
