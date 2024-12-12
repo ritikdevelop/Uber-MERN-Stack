@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import UserLogin from "./pages/UserLogin";
@@ -7,6 +7,9 @@ import CaptainLogin from "./pages/CaptainLogin";
 import CaptainSignUp from "./pages/CaptainSignUp";
 
 const App = () => {
+
+  
+
   return (
     <div>
       <Routes>

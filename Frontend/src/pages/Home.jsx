@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div>
-      <div className="bg-cover bg-bottom bg-[url('/images/traffic-light.avif')] h-screen pt-8 flex justify-between flex-col w-full bg-red-400">
+      <div className="bg-cover bg-bottom bg-[url('/images/traffic-light.avif')] h-screen pt-8 flex justify-between flex-col w-full">
         <img
           className="w-16 ml-8"
           src="/images/uber-logo.png"
