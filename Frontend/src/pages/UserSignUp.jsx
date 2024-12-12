@@ -11,13 +11,21 @@ const UserSignUp = () => {
           loading="lazy"
         />
         <form>
-          <h3 className="text-lg font-medium mb-2">Enter Name</h3>
+          <h3 className="text-lg font-medium mb-2">What's your Name</h3>
+          <div className="flex gap-5 mb-5">
           <input
-            type="email"
-            placeholder="Enter your name"
+            type="text"
+            placeholder="First Name"
             required
-            className="bg-[#eeeeee] mb-5 rounded px-4 py-2 border w-full text-lg placeholder:text-base"
+            className="bg-[#eeeeee] w-1/2 rounded px-4 py-2 border text-lg placeholder:text-base"
           />
+          <input
+            type="text"
+            placeholder="Last Name"
+            required
+            className="bg-[#eeeeee] w-1/2 rounded px-4 py-2 border text-lg placeholder:text-base"
+          />
+          </div>
 
           <h3 className="text-lg font-medium mb-2">Enter Email</h3>
           <input
@@ -32,7 +40,7 @@ const UserSignUp = () => {
             type="password"
             placeholder="password"
             required
-            className="bg-[#eeeeee] mb-7 rounded px-4 py-2 border w-full text-lg placeholder:text-base"
+            className="bg-[#eeeeee] mb-5 rounded px-4 py-2 border w-full text-lg placeholder:text-base"
           />
 
           <button className="bg-[#111] text-white font-semibold mb-5 rounded px-4 py-2 w-full text-lg placeholder:text-base">

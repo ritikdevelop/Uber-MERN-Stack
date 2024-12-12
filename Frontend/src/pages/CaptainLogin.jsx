@@ -1,31 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-
-const UserLogin = () => {
+const CaptainLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [userData, setUserData] = useState({});
+  const [captainUserData, setCaptainUserData] = useState({});
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setUserData({ 
-      email:email,
-      password:password 
+    setCaptainUserData({
+      email: email,
+      password: password,
     });
-    // console.log(userData);
+    // console.log(captainUserData);
     setEmail("");
     setPassword("");
-    
   };
 
   return (
     <div className="p-7 h-screen flex flex-col justify-between">
       <div>
         <img
-          className="w-16 mb-8"
-          src="/images/uber-logo.png"
-          alt="Uber icon"
+          className="w-20 mb-3"
+          src="/images/uber-driver.svg"
+          alt="Uber driver image"
           loading="lazy"
         />
         <form
@@ -63,19 +62,22 @@ const UserLogin = () => {
           </button>
         </form>
         <p className="text-center mb-1 font-normal">
-          Don't have an account?{" "}
-          <Link to={"/sign-up"} className="text-blue-600 font-medium">
-            Create new Account
+          join a fleet?{" "}
+          <Link to={"/captain-signup"} className="text-blue-600 font-medium">
+            Register as a Captain
           </Link>
         </p>
       </div>
       <div>
-        <Link to={"/captain-login"} className="bg-[#10b461] text-white font-semibold rounded px-4 py-2 w-full text-lg placeholder:text-base justify-center flex items-center mb-5">
-          Sign in as Captain
+        <Link
+          to={"/login"}
+          className="bg-[#d5622d] text-white font-semibold rounded px-4 py-2 w-full text-lg placeholder:text-base justify-center flex items-center mb-5"
+        >
+          Sign in as User
         </Link>
       </div>
     </div>
   );
 };
 
-export default UserLogin;
+export default CaptainLogin;
