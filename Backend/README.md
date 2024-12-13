@@ -37,7 +37,7 @@ This endpoint retrieves the profile information of the currently logged-in user.
   - [user](cci:4://file:///f:/Uber%20MERN%20Stack/Backend/controllers/user.controller.js:0:0-12:0): Object containing the user's profile information
 
 ### Example Response
- "user": { "_id": "1234567890", "FullName": { "firstName": "John", "lastName": "Doe" }, "email": "johndoe@example.com"
+ 
 
 
 
