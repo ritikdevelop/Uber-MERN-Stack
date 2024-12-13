@@ -1,6 +1,6 @@
 # User Registration and Login Endpoint Documentation
 
-## Endpoint: `/users/register`
+## Endpoint: `/users/register`  
 
 ### Description
 This endpoint allows a new user to register by providing their full name, email, and password. The endpoint validates the input data and creates a new user in the database. Upon successful registration, it returns a JSON response containing an authentication token and the user details.
@@ -17,70 +17,44 @@ This endpoint allows a new user to register by providing their full name, email,
   - `password` (String): Password of the user (required, at least 6 characters long).
 
 ### Example Request
-```json
-{
-  "FullName": {
-    "firstName": "John",
-    "lastName": "Doe"
-  },
-  "email": "john.doe@example.com",
-  "password": "securepassword123"
-}
-```
 
-### Response
-- **Status Code**: 201 (Created)
-- **Body**:
-  - `token` (String): Authentication token for the user.
-  - `user` (Object): User details.
-    - `FullName` (Object):
-      - `firstName` (String)
-      - `lastName` (String)
-    - `email` (String)
-    - `password` (String): Not included in the response for security reasons.
 
-### Example Response
-```json
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGUyZmYwMzA1MzYwMzYwMzYwMzYwMzYiLCJpYXQiOjE2OTI4MzI4MzJ9"
-}
 
-## Endpoint: `/users/login`
+## Endpoint: `/users/profile`  
 
 ### Description
-This endpoint allows an existing user to log in by providing their email and password. The endpoint validates the input data and checks the user's credentials. Upon successful authentication, it returns a JSON response containing an authentication token and the user details.
+This endpoint retrieves the profile information of the currently logged-in user.
+
+### HTTP Method
+- **GET**
+
+### Request Data
+- **Headers**:
+  - `Authorization`: Bearer token (required)
+
+### Response Data
+- **JSON**:
+  - [user](cci:4://file:///f:/Uber%20MERN%20Stack/Backend/controllers/user.controller.js:0:0-12:0): Object containing the user's profile information
+
+### Example Response
+ "user": { "_id": "1234567890", "FullName": { "firstName": "John", "lastName": "Doe" }, "email": "johndoe@example.com"
+
+
+
+## Endpoint: `/users/logout`  
+
+### Description
+This endpoint logs out the currently logged-in user by invalidating the authentication token.
 
 ### HTTP Method
 - **POST**
 
 ### Request Data
-- **Body**:
-  - `email` (String): Email address of the user (required, must be a valid email).
-  - `password` (String): Password of the user (required, at least 6 characters long).
+- **Headers**:
+  - `Authorization`: Bearer token (required)
 
-### Example Request
-```json
-{
-  "email": "john.doe@example.com",
-  "password": "securepassword123"
-}
-```
-
-### Response
-- **Status Code**: 200 (OK)
-- **Body**:
-  - `token` (String): Authentication token for the user.
-  - `user` (Object): User details.
-    - `email` (String)
-    - `password` (String): Not included in the response for security reasons.
+### Response Data
+- **JSON**:
+  - `message`: Success message
 
 ### Example Response
-```json
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGUyZmYwMzA1MzYwMzYwMzYwMzYwMzYiLCJpYXQiOjE2OTI4MzI4MzJ9"
-}
-- **400 Bad Request**:
-  - `errors` (Array): Validation errors.
-- **401 Unauthorized**:
-  - `error` (String): Invalid email or password.
-  
