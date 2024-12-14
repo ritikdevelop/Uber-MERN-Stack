@@ -65,30 +65,29 @@ const captainSchema = new mongoose.Schema({
 
   location: {
     lat: {
-        type: Number,
+      type: Number,
     },
     lng: {
-        type: Number,
-    }
-  }
+      type: Number,
+    },
+  },
 });
 
-
 captainSchema.methods.generateAuthToken = function () {
-    const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
-    return token;
+  const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: "24h",
+  });
+  return token;
 };
 
 captainSchema.methods.comparePassword = async function (password) {
-    return await bcrypt.compare(password, this.password);
+  return await bcrypt.compare(password, this.password);
 };
 
-
 captainSchema.statics.hashPassword = async function (password) {
-    return await bcrypt.hash(password, 10);
+  return await bcrypt.hash(password, 10);
 };
 
 const captainModel = mongoose.model("Captain", captainSchema);
-
 
 module.exports = captainModel;
