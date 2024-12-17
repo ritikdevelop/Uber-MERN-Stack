@@ -4,37 +4,37 @@ const { validationResult } = require('express-validator');
 const blackListTokenModel = require('../models/blacklistToken.model');
 
 module.exports.registerUser = async (req, res, next) => {
-    
     const errors = validationResult(req);
+  
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ errors: errors.array() });
     }
-
+  
     const { fullname, email, password } = req.body;
-
-    if (!fullname || !fullname.firstname || !fullname.lastname) {
-        return res.status(400).json({ message: 'Fullname is required with firstname and lastname.' });
+  
+    if (!fullname || !fullname.firstName || !fullname.lastName) {
+      return res.status(400).json({ message: 'Fullname is required with firstName and lastName' });
     }
-
+  
     const isUserAlready = await userModel.findOne({ email });
-
+  
     if (isUserAlready) {
-        return res.status(400).json({ message: 'User already exist' });
+      return res.status(400).json({ message: 'User already exists' });
     }
-
+  
     const hashedPassword = await userModel.hashPassword(password);
-
+  
     const user = await userService.createUser({
-        firstname: fullname.firstname,
-        lastname: fullname.lastname,
-        email,
-        password: hashedPassword
+      firstName: fullname.firstName,
+      lastName: fullname.lastName,
+      email,
+      password: hashedPassword,
     });
-
+  
     const token = user.generateAuthToken();
-
+  
     res.status(201).json({ token, user });
-}
+  };
 
 module.exports.loginUser = async (req, res, next) => {
     const errors = validationResult(req);

@@ -1,60 +1,64 @@
-## Endpoint: `/captain/register`
+## User Endpoints  
 
-### Description
-This endpoint registers a new captain by providing their email, full name, password, and vehicle details.
+### Endpoint: `/users/register`  
+### Description  
+Registers a new user.  
 
-### HTTP Method
-- **POST**
+### HTTP Method  
+- **POST**  
 
-### Request Data
-- **Body**:
-  - `email` (String): Email address of the captain (required, must be a valid email).
-  - `fullName` (Object):
-    - `firstname` (String): First name of the captain (required, at least 3 characters long).
-  - `password` (String): Password of the captain (required, at least 6 characters long).
-  - `vehicle` (Object):
-    - `color` (String): Color of the vehicle (required, at least 3 characters long).
-    - `plate` (String): Vehicle plate number (required, at least 3 characters long).
-    - `capacity` (Integer): Capacity of the vehicle (required, must be at least 1).
-    - `vehicleType` (String): Type of vehicle (required, must be one of 'car', 'motorcycle', 'auto').
+### Request Data  
+- **Body**:  
+  - `email` (String): User's email address (required, must be a valid email).  
+  - `fullname` (Object):  
+    - `firstName` (String): User's first name (required, at least 3 characters long).  
+    - `lastName` (String): User's last name (required).  
+  - `password` (String): User's password (required, at least 6 characters long).  
 
-### Example Request
-```json
-{
-  "email": "captain.john@example.com",
-  "fullName": {
-    "firstname": "John"
-  },
-  "password": "securepassword123",
-  "vehicle": {
-    "color": "red",
-    "plate": "ABC123",
-    "capacity": 4,
-    "vehicleType": "car"
-  }
-}
-```
+### Response  
+- **Status Code**: 201 (Created)  
+- **Body**:  
+  - `token` (String): Authentication token for the user.  
+  - `user` (Object): User details.  
 
-### Response
-- **Status Code**: 201 (Created)
-- **Body**:
-  - `token` (String): Authentication token for the captain.
-  - `captain` (Object): Captain details.
+### Endpoint: `/users/login`  
+### Description  
+Logs in a user.  
 
-### Example Response
-```json
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGUyZmYwMzA1MzYwMzYwMzYwMzYwMzYiLCJpYXQiOjE2OTI4MzI4MzJ9",
-  "captain": {
-    "fullName": {
-      "firstname": "John"
-    },
-    "email": "captain.john@example.com",
-    "vehicle": {
-      "color": "red",
-      "plate": "ABC123",
-      "capacity": 4,
-      "vehicleType": "car"
-    }
-  }
-}
+### HTTP Method  
+- **POST**  
+
+### Request Data  
+- **Body**:  
+  - `email` (String): User's email address (required).  
+  - `password` (String): User's password (required).  
+
+### Response  
+- **Status Code**: 200 (OK)  
+- **Body**:  
+  - `token` (String): Authentication token for the user.  
+  - `user` (Object): User details.  
+
+### Endpoint: `/users/profile`  
+### Description  
+Retrieves the user's profile.  
+
+### HTTP Method  
+- **GET**  
+
+### Response  
+- **Status Code**: 200 (OK)  
+- **Body**:  
+  - `user` (Object): User profile details.  
+
+### Endpoint: `/users/logout`  
+### Description  
+Logs out the user.  
+
+### HTTP Method  
+- **GET**  
+
+### Response  
+- **Status Code**: 200 (OK)  
+- **Body**:  
+  - `message` (String): Confirmation message for logout.
