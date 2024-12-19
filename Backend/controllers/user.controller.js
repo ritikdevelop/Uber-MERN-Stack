@@ -4,9 +4,11 @@ const { validationResult } = require('express-validator');
 const blackListTokenModel = require('../models/blacklistToken.model');
 
 module.exports.registerUser = async (req, res, next) => {
+    // console.log("Request body:", req.body); // Log the request body
     const errors = validationResult(req);
   
     if (!errors.isEmpty()) {
+      console.log("Validation errors:", errors.array()); // Log validation errors
       return res.status(400).json({ errors: errors.array() });
     }
   
@@ -16,24 +18,30 @@ module.exports.registerUser = async (req, res, next) => {
       return res.status(400).json({ message: 'Fullname is required with firstName and lastName' });
     }
   
-    const isUserAlready = await userModel.findOne({ email });
+    try {
+      const isUserAlready = await userModel.findOne({ email });
   
-    if (isUserAlready) {
-      return res.status(400).json({ message: 'User already exists' });
+      if (isUserAlready) {
+        console.log("User already exists:", email); // Log existing user email
+        return res.status(400).json({ message: 'User already exists' });
+      }
+  
+      const hashedPassword = await userModel.hashPassword(password);
+  
+      const user = await userService.createUser({
+        firstName: fullname.firstName,
+        lastName: fullname.lastName,
+        email,
+        password: hashedPassword,
+      });
+  
+      const token = user.generateAuthToken();
+  
+      res.status(201).json({ token, user });
+    } catch (error) {
+      console.error("Error during user registration:", error.message); // Log error message
+      res.status(500).json({ message: "Server error", error: error.message });
     }
-  
-    const hashedPassword = await userModel.hashPassword(password);
-  
-    const user = await userService.createUser({
-      firstName: fullname.firstName,
-      lastName: fullname.lastName,
-      email,
-      password: hashedPassword,
-    });
-  
-    const token = user.generateAuthToken();
-  
-    res.status(201).json({ token, user });
   };
 
 module.exports.loginUser = async (req, res, next) => {

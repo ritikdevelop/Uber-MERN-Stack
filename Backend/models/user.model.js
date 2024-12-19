@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema ({
         type: String,
         unique: true,
         minlength: [5, "Email must be at least 3 characters long"],
-        required: true
+        required: true,
+        match: [/.+\@.+\..+/, "Please fill a valid email address"]
     },
     password: {
         type: String,
@@ -42,7 +43,6 @@ userSchema.methods.comparePassword = async function (password) {
 userSchema.statics.hashPassword = async function (password) {
     return await bcrypt.hash(password, 10);
 }
-
 
 const userModel = mongoose.model('User', userSchema);
 
