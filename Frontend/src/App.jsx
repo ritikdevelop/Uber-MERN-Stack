@@ -8,8 +8,6 @@ import CaptainSignUp from "./pages/CaptainSignUp";
 import Home from "./pages/Home";
 
 const App = () => {
-
-
   return (
     <div>
       <Routes>
