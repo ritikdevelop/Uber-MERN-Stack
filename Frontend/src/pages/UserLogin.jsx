@@ -9,14 +9,13 @@ const UserLogin = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setUserData({ 
-      email:email,
-      password:password 
+    setUserData({
+      email: email,
+      password: password,
     });
     // console.log(userData);
     setEmail("");
     setPassword("");
-    
   };
 
   return (
@@ -70,7 +69,10 @@ const UserLogin = () => {
         </p>
       </div>
       <div>
-        <Link to={"/captain-login"} className="bg-[#10b461] text-white font-semibold rounded px-4 py-2 w-full text-lg placeholder:text-base justify-center flex items-center mb-5">
+        <Link
+          to={"/captain-login"}
+          className="bg-[#10b461] text-white font-semibold rounded px-4 py-2 w-full text-lg placeholder:text-base justify-center flex items-center mb-5"
+        >
           Sign in as Captain
         </Link>
       </div>
